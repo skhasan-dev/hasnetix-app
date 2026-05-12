@@ -45,5 +45,5 @@ app.*.map.json
 /android/app/release
 
 #Directory Builder
-generate-feature.js
-package.json
+/generate-feature.js
+/package.json
