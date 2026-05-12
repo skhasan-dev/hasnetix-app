@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "scripts": {
+    "feature": "node generate-feature.js"
+  }
+}
