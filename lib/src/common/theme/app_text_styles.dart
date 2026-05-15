@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
+  static final s10W700 = TextStyle(fontSize: 10, fontWeight: FontWeight.w700);
+
   static final s12W400 = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
 
   static final s12W600 = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
@@ -35,6 +37,10 @@ class AppTextStyles {
   static final s28W400 = TextStyle(fontSize: 28, fontWeight: FontWeight.w400);
 
   static final s28W600 = TextStyle(fontSize: 28, fontWeight: FontWeight.w600);
+
+  static final s30W400 = TextStyle(fontSize: 30, fontWeight: FontWeight.w400);
+
+  static final s30W600 = TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
 
   static final s38W600 = TextStyle(fontSize: 38, fontWeight: FontWeight.w600);
 }

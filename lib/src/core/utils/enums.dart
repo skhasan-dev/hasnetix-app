@@ -123,3 +123,26 @@ enum FileProvider {
     );
   }
 }
+
+enum DeviceType {
+  desktop(apiLabel: 'desktop', label: 'Desktop', icon: Icons.computer),
+
+  mobile(apiLabel: 'mobile', label: 'Mobile', icon: Icons.phone_android);
+
+  final String apiLabel;
+  final String label;
+  final IconData icon;
+
+  const DeviceType({
+    required this.apiLabel,
+    required this.label,
+    required this.icon,
+  });
+
+  static DeviceType fromValue(String? value) {
+    return DeviceType.values.firstWhere(
+      (e) => e.apiLabel == value,
+      orElse: () => DeviceType.desktop,
+    );
+  }
+}
