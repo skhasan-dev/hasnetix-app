@@ -21,12 +21,10 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   usageResetAt: json['usageResetAt'] == null
       ? null
       : DateTime.parse(json['usageResetAt'] as String),
-  device: json['device'] == null
-      ? null
-      : Device.fromJson(json['device'] as Map<String, dynamic>),
-  lastPairedDevices: (json['lastPairedDevices'] as List<dynamic>?)
-      ?.map((e) => Device.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  device: const DeviceOrStringConvertor().fromJson(json['device']),
+  lastPairedDevices: const DeviceListOrStringListConvertor().fromJson(
+    json['lastPairedDevices'],
+  ),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
@@ -40,8 +38,10 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'monthlyUsage': instance.monthlyUsage,
   'storage': instance.storage,
   'usageResetAt': instance.usageResetAt?.toIso8601String(),
-  'device': instance.device,
-  'lastPairedDevices': instance.lastPairedDevices,
+  'device': const DeviceOrStringConvertor().toJson(instance.device),
+  'lastPairedDevices': const DeviceListOrStringListConvertor().toJson(
+    instance.lastPairedDevices,
+  ),
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(

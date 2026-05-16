@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String? get userId;@UserTypeConverter() UserType? get type; String? get name; String? get email; int? get monthlyUsage; UserStorage? get storage; DateTime? get usageResetAt; Device? get device; List<Device>? get lastPairedDevices;
+ String? get userId;@UserTypeConverter() UserType? get type; String? get name; String? get email; int? get monthlyUsage; UserStorage? get storage; DateTime? get usageResetAt;@DeviceOrStringConvertor() Device? get device;@DeviceListOrStringListConvertor() List<Device>? get lastPairedDevices;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt, Device? device, List<Device>? lastPairedDevices
+ String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt,@DeviceOrStringConvertor() Device? device,@DeviceListOrStringListConvertor() List<Device>? lastPairedDevices
 });
 
 
@@ -185,7 +185,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt,  Device? device,  List<Device>? lastPairedDevices)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
@@ -206,7 +206,7 @@ return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsag
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt,  Device? device,  List<Device>? lastPairedDevices)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)  $default,) {final _that = this;
 switch (_that) {
 case _User():
 return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
@@ -226,7 +226,7 @@ return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsag
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt,  Device? device,  List<Device>? lastPairedDevices)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
@@ -241,7 +241,7 @@ return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsag
 @JsonSerializable()
 
 class _User implements User {
-  const _User({this.userId, @UserTypeConverter() this.type, this.name, this.email, this.monthlyUsage, this.storage, this.usageResetAt, this.device, final  List<Device>? lastPairedDevices}): _lastPairedDevices = lastPairedDevices;
+  const _User({this.userId, @UserTypeConverter() this.type, this.name, this.email, this.monthlyUsage, this.storage, this.usageResetAt, @DeviceOrStringConvertor() this.device, @DeviceListOrStringListConvertor() final  List<Device>? lastPairedDevices}): _lastPairedDevices = lastPairedDevices;
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  String? userId;
@@ -251,9 +251,9 @@ class _User implements User {
 @override final  int? monthlyUsage;
 @override final  UserStorage? storage;
 @override final  DateTime? usageResetAt;
-@override final  Device? device;
+@override@DeviceOrStringConvertor() final  Device? device;
  final  List<Device>? _lastPairedDevices;
-@override List<Device>? get lastPairedDevices {
+@override@DeviceListOrStringListConvertor() List<Device>? get lastPairedDevices {
   final value = _lastPairedDevices;
   if (value == null) return null;
   if (_lastPairedDevices is EqualUnmodifiableListView) return _lastPairedDevices;
@@ -295,7 +295,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt, Device? device, List<Device>? lastPairedDevices
+ String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt,@DeviceOrStringConvertor() Device? device,@DeviceListOrStringListConvertor() List<Device>? lastPairedDevices
 });
 
 

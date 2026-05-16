@@ -10,7 +10,7 @@ ApiConfig getApiConfig(Flavor flavor) {
   final String baseUrl;
   switch (flavor) {
     case Flavor.stage:
-      baseUrl = 'https://hasnetix.onrender.com/api/';
+      baseUrl = 'https://hasnetix-stage.onrender.com/api/';
     case Flavor.prod:
       baseUrl = 'https://hasnetix.onrender.com/api/';
   }

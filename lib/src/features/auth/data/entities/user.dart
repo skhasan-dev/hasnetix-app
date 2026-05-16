@@ -1,5 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hasnetix/src/core/index.dart' show UserTypeConverter, UserType;
+import 'package:hasnetix/src/core/index.dart'
+    show
+        UserTypeConverter,
+        UserType,
+        DeviceOrStringConvertor,
+        DeviceListOrStringListConvertor;
 import 'package:hasnetix/src/features/auth/index.dart'
     show UserStorage, Device, $UserStorageCopyWith, $DeviceCopyWith;
 
@@ -16,8 +21,8 @@ abstract class User with _$User {
     int? monthlyUsage,
     UserStorage? storage,
     DateTime? usageResetAt,
-    Device? device,
-    List<Device>? lastPairedDevices,
+    @DeviceOrStringConvertor() Device? device,
+    @DeviceListOrStringListConvertor() List<Device>? lastPairedDevices,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
