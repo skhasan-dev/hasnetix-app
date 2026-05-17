@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hasnetix/src/common/index.dart';
-import 'package:hasnetix/src/core/index.dart' show AppRouter;
+import 'package:hasnetix/src/common/index.dart' show AppColors;
+import 'package:hasnetix/src/core/index.dart' show appRouter;
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,7 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter().router,
+      routerConfig: appRouter,
       theme: Theme.of(
         context,
       ).copyWith(scaffoldBackgroundColor: AppColors.background),

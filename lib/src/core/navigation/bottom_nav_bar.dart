@@ -42,10 +42,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 6),
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppColors.text.withValues(alpha: 0.2),
-          width: 0.4,
+          color: AppColors.text.withValues(alpha: 0.5),
+          width: 0.7,
         ),
       ),
       child: StylishBottomBar(

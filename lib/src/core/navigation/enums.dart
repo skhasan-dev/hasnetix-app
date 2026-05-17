@@ -15,7 +15,7 @@ enum NavItem {
   notification(
     label: 'Notification',
     selectedIcon: Icons.notifications_active,
-    unSelectedIcon: Icons.notifications_active_outlined,
+    unSelectedIcon: Icons.notifications_outlined,
   ),
   profile(
     label: 'Profile',
