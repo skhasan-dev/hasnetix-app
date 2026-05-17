@@ -1,15 +1,106 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hasnetix/src/core/index.dart' show NotFoundView, RouteNames;
-import 'package:hasnetix/src/features/auth/presentation/auth_view.dart';
+import 'package:hasnetix/src/core/index.dart'
+    show
+        NotFoundView,
+        RouteNames,
+        customTransitionGoRoute,
+        ScaffoldWithNavBar,
+        NavigationRepository,
+        getIt,
+        SecretRepo,
+        AppStateProvider;
+import 'package:hasnetix/src/features/auth/index.dart';
+import 'package:hasnetix/src/features/splash/index.dart' show SplashView;
 
 class AppRouter {
   GoRouter router = GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/splash',
     routes: [
-      GoRoute(
-        path: '/login',
-        name: RouteNames.login,
-        builder: (_, _) => AuthView(),
+      customTransitionGoRoute(
+        name: RouteNames.splash,
+        path: '/splash',
+        pageBuilder: (context, state) => SplashView(
+          next: (contex) async {
+            Future.delayed(const Duration(seconds: 2), () async {
+              try {
+                final authToken = await SecretRepo.getString('auth_token');
+                final userId = await SecretRepo.getString('auth_user_id');
+                if (!context.canPop()) {
+                  if (authToken == null && userId == null) {
+                    await SecretRepo.clearAll();
+                  } else {
+                    final appStateProvider = getIt<AppStateProvider>();
+                    await appStateProvider.getUserDetails();
+                    // await appStateProvider.init();
+                  }
+                  context.goNamed(RouteNames.home);
+                  return;
+                }
+              } catch (e) {
+                context.goNamed(RouteNames.login);
+                return;
+              }
+            });
+          },
+        ),
+        routes: [
+          customTransitionGoRoute(
+            path: 'login',
+            name: RouteNames.login,
+            pageBuilder: (_, _) => AuthView(),
+          ),
+          StatefulShellRoute.indexedStack(
+            builder: (context, state, navigationShell) =>
+                ScaffoldWithNavBar(navigationShell: navigationShell),
+            branches: [
+              StatefulShellBranch(
+                navigatorKey: getIt<NavigationRepository>().shellNavigatorAKey,
+                routes: [
+                  customTransitionGoRoute(
+                    name: RouteNames.home,
+                    path: 'home',
+                    pageBuilder: (context, state) =>
+                        Scaffold(body: Center(child: Text('Home'))),
+                  ),
+                ],
+              ),
+              StatefulShellBranch(
+                navigatorKey: getIt<NavigationRepository>().shellNavigatorBKey,
+                routes: [
+                  customTransitionGoRoute(
+                    name: RouteNames.hub,
+                    path: 'hub',
+                    pageBuilder: (context, state) =>
+                        Scaffold(body: Center(child: Text('Hub'))),
+                  ),
+                ],
+              ),
+              StatefulShellBranch(
+                navigatorKey: getIt<NavigationRepository>().shellNavigatorCKey,
+                routes: [
+                  customTransitionGoRoute(
+                    name: RouteNames.notification,
+                    path: 'notification',
+                    pageBuilder: (context, state) =>
+                        Scaffold(body: Center(child: Text('Notification'))),
+                  ),
+                ],
+              ),
+              StatefulShellBranch(
+                navigatorKey: getIt<NavigationRepository>().shellNavigatorDKey,
+                routes: [
+                  customTransitionGoRoute(
+                    name: RouteNames.profile,
+                    path: 'profile',
+                    pageBuilder: (context, state) =>
+                        Scaffold(body: Center(child: Text('Profile'))),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     ],
     errorBuilder: (_, _) => NotFoundView(),

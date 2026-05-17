@@ -1,3 +1,6 @@
-abstract class ProfileRepository {
+import 'package:hasnetix/src/core/index.dart' show ResultFuture;
+import 'package:hasnetix/src/features/auth/index.dart' show User;
 
+abstract class ProfileRepository {
+  ResultFuture<User?> getUserDetails();
 }
