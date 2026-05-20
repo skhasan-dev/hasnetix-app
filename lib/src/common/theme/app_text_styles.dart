@@ -38,6 +38,7 @@ class AppTextStyles {
   static final s24W400 = TextStyle(fontSize: 24, fontWeight: FontWeight.w400);
 
   static final s24W600 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
+
   static final s24W900 = TextStyle(fontSize: 24, fontWeight: FontWeight.w900);
 
   static final s28W400 = TextStyle(fontSize: 28, fontWeight: FontWeight.w400);
@@ -47,6 +48,8 @@ class AppTextStyles {
   static final s30W400 = TextStyle(fontSize: 30, fontWeight: FontWeight.w400);
 
   static final s30W600 = TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+
+  static final s36W600 = TextStyle(fontSize: 36, fontWeight: FontWeight.w600);
 
   static final s38W600 = TextStyle(fontSize: 38, fontWeight: FontWeight.w600);
 }

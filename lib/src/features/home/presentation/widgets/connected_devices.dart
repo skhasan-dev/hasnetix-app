@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hasnetix/src/common/index.dart';
+import 'package:hasnetix/src/core/index.dart';
 import 'package:hasnetix/src/features/auth/index.dart';
 import 'package:hasnetix/src/features/home/index.dart';
 
@@ -44,7 +46,13 @@ class ConnectedDevices extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                AppButton(label: 'Pair a device', onPressed: () {}),
+                AppButton(
+                  label: 'Pair a device',
+                  onPressed: () async {
+                    final result = await context.pushNamed(RouteNames.pairing);
+                    if (result == true) {}
+                  },
+                ),
               ],
             ),
           )

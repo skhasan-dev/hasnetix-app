@@ -14,6 +14,7 @@ import 'package:hasnetix/src/features/home/index.dart' show HomeView;
 import 'package:hasnetix/src/features/hub/index.dart' show HubView;
 import 'package:hasnetix/src/features/notification/index.dart'
     show NotificationView;
+import 'package:hasnetix/src/features/pairing/index.dart';
 import 'package:hasnetix/src/features/profile/index.dart' show ProfileView;
 import 'package:hasnetix/src/features/splash/index.dart' show SplashView;
 
@@ -53,6 +54,11 @@ GoRouter appRouter = GoRouter(
           path: 'login',
           name: RouteNames.login,
           pageBuilder: (_, _) => AuthView(),
+        ),
+        customTransitionGoRoute(
+          path: 'pairing',
+          name: RouteNames.pairing,
+          pageBuilder: (_, _) => PairingView(),
         ),
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) =>

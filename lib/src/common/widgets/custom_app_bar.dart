@@ -35,6 +35,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               label ?? '',
               style: AppTextStyles.s18W600.copyWith(color: AppColors.text),
             ),
+      titleSpacing: icon != null ? 0 : null,
       actions: [...?actions, SizedBox(width: 24)],
       backgroundColor: AppColors.background,
       surfaceTintColor: AppColors.background,

@@ -25,6 +25,13 @@ enum UserType {
 }
 
 enum FileTypes {
+  all(
+    apiLabel: '',
+    label: 'All',
+    icon: Icons.list,
+    iconColor: AppColors.imageIcon,
+  ),
+
   image(
     apiLabel: 'image',
     label: 'Image',
@@ -158,6 +165,31 @@ enum DeviceType {
     return DeviceType.values.firstWhere(
       (e) => e.apiLabel == value,
       orElse: () => DeviceType.desktop,
+    );
+  }
+}
+
+enum PairingStatus {
+  pending(apiLabel: 'pending', label: 'Pending', icon: Icons.pending),
+
+  active(apiLabel: 'active', label: 'Paired', icon: Icons.phone_android),
+
+  expired(apiLabel: 'expired', label: 'Expired', icon: Icons.phone_android);
+
+  final String apiLabel;
+  final String label;
+  final IconData icon;
+
+  const PairingStatus({
+    required this.apiLabel,
+    required this.label,
+    required this.icon,
+  });
+
+  static PairingStatus fromValue(String? value) {
+    return PairingStatus.values.firstWhere(
+      (e) => e.apiLabel == value,
+      orElse: () => PairingStatus.pending,
     );
   }
 }

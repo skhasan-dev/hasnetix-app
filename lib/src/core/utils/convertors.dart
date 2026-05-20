@@ -1,6 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hasnetix/src/core/index.dart'
-    show UserType, FileTypes, FileStatus, FileProvider, DeviceType;
+    show
+        UserType,
+        FileTypes,
+        FileStatus,
+        FileProvider,
+        DeviceType,
+        PairingStatus;
 import 'package:hasnetix/src/features/auth/index.dart';
 
 class UserTypeConverter implements JsonConverter<UserType, String> {
@@ -69,6 +75,20 @@ class DeviceTypeConverter implements JsonConverter<DeviceType, String> {
 
   @override
   String toJson(DeviceType object) {
+    return object.apiLabel;
+  }
+}
+
+class PairingStatusConverter implements JsonConverter<PairingStatus, String> {
+  const PairingStatusConverter();
+
+  @override
+  PairingStatus fromJson(String json) {
+    return PairingStatus.fromValue(json);
+  }
+
+  @override
+  String toJson(PairingStatus object) {
     return object.apiLabel;
   }
 }
