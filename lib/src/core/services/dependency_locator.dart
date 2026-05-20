@@ -8,6 +8,7 @@ import 'package:hasnetix/src/core/index.dart'
         FirebaseCrashlyticsService;
 import 'package:hasnetix/src/features/auth/index.dart'
     show AuthDataSource, AuthRepository, AuthDataSourceImpl, AuthRepositoryImpl;
+import 'package:hasnetix/src/features/home/index.dart';
 import 'package:hasnetix/src/features/profile/index.dart'
     show
         ProfileDataSource,
@@ -31,5 +32,8 @@ Future<void> initDependencyLocator() async {
     ..registerFactory<AuthDataSource>(() => AuthDataSourceImpl())
     ..registerFactory<AuthRepository>(() => AuthRepositoryImpl(getIt()))
     ..registerFactory<ProfileDataSource>(() => ProfileDataSourceImpl())
-    ..registerFactory<ProfileRepository>(() => ProfileRepositoryImpl(getIt()));
+    ..registerFactory<ProfileRepository>(() => ProfileRepositoryImpl(getIt()))
+    ..registerFactory<HomeDataSource>(() => HomeDataSourceImpl())
+    ..registerFactory<HomeRepository>(() => HomeRepositoryImpl(getIt()))
+    ..registerLazySingleton<HomeViewModel>(HomeViewModel.new);
 }

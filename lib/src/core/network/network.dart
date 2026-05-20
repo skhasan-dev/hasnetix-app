@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:hasnetix/src/config/index.dart';
@@ -29,6 +31,7 @@ class NetworkService {
       final token = await SecretRepo.getString('auth_token');
       if (token != null && token.isNotEmpty) {
         headers['Authorization'] = 'Bearer $token';
+        log(token, name: 'Auth Token');
       }
     }
 

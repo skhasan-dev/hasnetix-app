@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hasnetix/src/common/index.dart';
 
 enum UserType {
   guest(apiLabel: 'guest', label: 'Guest', icon: Icons.person_outline),
@@ -24,30 +25,44 @@ enum UserType {
 }
 
 enum FileTypes {
-  image(apiLabel: 'image', label: 'Image', icon: Icons.image_outlined),
+  image(
+    apiLabel: 'image',
+    label: 'Image',
+    icon: Icons.image_outlined,
+    iconColor: AppColors.imageIcon,
+  ),
 
-  video(apiLabel: 'video', label: 'Video', icon: Icons.video_file_outlined),
+  video(
+    apiLabel: 'video',
+    label: 'Video',
+    icon: Icons.videocam,
+    iconColor: AppColors.videoIcon,
+  ),
 
   document(
     apiLabel: 'document',
     label: 'Document',
     icon: Icons.description_outlined,
+    iconColor: AppColors.documentIcon,
   ),
 
   other(
     apiLabel: 'other',
     label: 'Other',
     icon: Icons.insert_drive_file_outlined,
+    iconColor: AppColors.otherIcon,
   );
 
   final String apiLabel;
   final String label;
   final IconData icon;
+  final Color iconColor;
 
   const FileTypes({
     required this.apiLabel,
     required this.label,
     required this.icon,
+    required this.iconColor,
   });
 
   static FileTypes fromValue(String? value) {

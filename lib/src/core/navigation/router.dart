@@ -32,12 +32,13 @@ GoRouter appRouter = GoRouter(
               if (!context.canPop()) {
                 if (authToken == null && userId == null) {
                   await SecretRepo.clearAll();
+                  context.goNamed(RouteNames.login);
                 } else {
                   final appStateProvider = getIt<AppStateProvider>();
                   await appStateProvider.getUserDetails();
                   // await appStateProvider.init();
+                  context.goNamed(RouteNames.home);
                 }
-                context.goNamed(RouteNames.home);
                 return;
               }
             } catch (e) {

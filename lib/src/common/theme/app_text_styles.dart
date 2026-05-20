@@ -7,9 +7,15 @@ class AppTextStyles {
 
   static final s12W600 = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
 
+  static final s12W700 = TextStyle(fontSize: 12, fontWeight: FontWeight.w700);
+
   static final s14W400 = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
 
+  static final s14W500 = TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+
   static final s14W600 = TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
+
+  static final s14W700 = TextStyle(fontSize: 14, fontWeight: FontWeight.w700);
 
   static final s16W400 = TextStyle(fontSize: 16, fontWeight: FontWeight.w400);
 

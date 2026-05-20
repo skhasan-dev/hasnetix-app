@@ -1,6 +1,7 @@
 import 'package:hasnetix/src/core/index.dart'
     show ViewStateProvider, getIt, APIFailure, Failure;
 import 'package:hasnetix/src/features/auth/index.dart' show User;
+import 'package:hasnetix/src/features/home/index.dart';
 import 'package:hasnetix/src/features/profile/index.dart';
 
 class AppStateProvider extends ViewStateProvider {
@@ -19,6 +20,7 @@ class AppStateProvider extends ViewStateProvider {
       },
       (result) {
         user = result;
+        getIt<HomeViewModel>().devices = user?.lastPairedDevices ?? [];
       },
     );
     return null;

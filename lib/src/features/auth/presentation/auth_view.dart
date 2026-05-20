@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hasnetix/src/common/index.dart'
     show AppColors, AppTextStyles, AppButton, AppLoadingIndicator;
-import 'package:hasnetix/src/core/index.dart' show FailureExt, UserType;
+import 'package:hasnetix/src/core/index.dart'
+    show FailureExt, UserType, RouteNames;
 import 'package:hasnetix/src/features/auth/index.dart' show AuthViewModel;
 import 'package:provider/provider.dart';
 
@@ -96,6 +98,9 @@ class _AuthViewState extends State<AuthView> {
                             UserType.google,
                           );
                           failure?.showError(context);
+                          if (failure == null) {
+                            context.pushNamed(RouteNames.home);
+                          }
                         },
                       ),
                       const SizedBox(height: 16),
@@ -106,6 +111,9 @@ class _AuthViewState extends State<AuthView> {
                             UserType.guest,
                           );
                           failure?.showError(context);
+                          if (failure == null) {
+                            context.pushNamed(RouteNames.home);
+                          }
                         },
                       ),
                     ],
