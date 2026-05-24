@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "628841847510",
+    "project_id": "hasnetix-prod",
+    "storage_bucket": "hasnetix-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628841847510:android:3789024ab47fc812b6c777",
+        "android_client_info": {
+          "package_name": "com.hasneticlabs.hasnetix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzEtlDr10V0uvXO0ifOPLq4ByDpPf5E18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
