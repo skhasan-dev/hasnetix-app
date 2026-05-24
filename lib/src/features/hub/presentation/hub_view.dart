@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hasnetix/src/common/index.dart';
 import 'package:hasnetix/src/core/index.dart';
-import 'package:hasnetix/src/features/home/index.dart';
+import 'package:hasnetix/src/features/auth/index.dart';
 import 'package:hasnetix/src/features/hub/presentation/view_models/hub_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -55,13 +55,18 @@ class _HubViewState extends State<HubView> {
                     Row(
                       spacing: 24,
                       children: [
-                        ProgressIndicatorTheme(
-                          data: ProgressIndicatorThemeData(
-                            color: Colors.blue,
-                            circularTrackColor: Colors.white,
-                            strokeCap: StrokeCap.round,
+                        SizedBox(
+                          height: 92,
+                          width: 92,
+                          child: ProgressIndicatorTheme(
+                            data: ProgressIndicatorThemeData(
+                              color: Colors.blue,
+                              circularTrackColor: Colors.white,
+                              strokeCap: StrokeCap.round,
+                              strokeWidth: 12,
+                            ),
+                            child: CircularProgressIndicator(value: 0.5),
                           ),
-                          child: CircularProgressIndicator(value: 0.5),
                         ),
 
                         Column(
@@ -107,7 +112,14 @@ class _HubViewState extends State<HubView> {
                         ),
                       ],
                     ),
-                    StorageSlider(percent: 15),
+                    Selector<AppStateProvider, User?>(
+                      selector: (_, vm) => vm.user,
+                      builder: (_, user, _) => StorageBar(
+                        value: user?.storage?.totalUsed ?? 0,
+                        format: SizeFormat.mb,
+                        showLabel: true,
+                      ),
+                    ),
                   ],
                 ),
               ),

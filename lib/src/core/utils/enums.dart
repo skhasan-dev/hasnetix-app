@@ -193,3 +193,30 @@ enum PairingStatus {
     );
   }
 }
+
+enum SizeFormat {
+  b(apiLabel: 'b', label: 'B', bytes: 1),
+
+  kb(apiLabel: 'kb', label: 'KB', bytes: 1024),
+
+  mb(apiLabel: 'mb', label: 'MB', bytes: 1024 * 1024),
+
+  gb(apiLabel: 'gb', label: 'GB', bytes: 1024 * 1024 * 1024);
+
+  final String apiLabel;
+  final String label;
+  final int bytes;
+
+  const SizeFormat({
+    required this.apiLabel,
+    required this.label,
+    required this.bytes,
+  });
+
+  static SizeFormat fromValue(String? value) {
+    return SizeFormat.values.firstWhere(
+      (e) => e.apiLabel == value,
+      orElse: () => SizeFormat.b,
+    );
+  }
+}

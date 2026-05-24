@@ -14,6 +14,7 @@ part 'user.g.dart';
 @freezed
 abstract class User with _$User {
   const factory User({
+    @JsonKey(name: '_id') String? id,
     String? userId,
     @UserTypeConverter() UserType? type,
     String? name,

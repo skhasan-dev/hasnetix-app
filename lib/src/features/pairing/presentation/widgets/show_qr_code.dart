@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hasnetix/src/common/index.dart' show AppColors, AppTextStyles;
-import 'package:hasnetix/src/core/index.dart' show Toasts;
+import 'package:hasnetix/src/core/index.dart' show Toasts, PairingStatus;
 import 'package:hasnetix/src/features/pairing/index.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class ShowQrCode extends StatefulWidget {
   const ShowQrCode({required this.session, super.key});
 
-  final PairingSession session;
+  final PairingSession? session;
 
   @override
   State<ShowQrCode> createState() => _ShowQrCodeState();
@@ -36,7 +36,7 @@ class _ShowQrCodeState extends State<ShowQrCode> {
   }
 
   void _updateRemainingTime() {
-    final expiresAt = widget.session.expiresAt;
+    final expiresAt = widget.session?.expiresAt;
 
     if (expiresAt == null) return;
 
@@ -80,7 +80,7 @@ class _ShowQrCodeState extends State<ShowQrCode> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: QrImageView(data: widget.session.code ?? '', size: 200),
+            child: QrImageView(data: widget.session?.code ?? '', size: 200),
           ),
 
           const SizedBox(height: 24),
@@ -94,7 +94,9 @@ class _ShowQrCodeState extends State<ShowQrCode> {
 
           InkWell(
             onTap: () {
-              Clipboard.setData(ClipboardData(text: widget.session.code ?? ''));
+              Clipboard.setData(
+                ClipboardData(text: widget.session?.code ?? ''),
+              );
 
               Toasts.showSuccessToast(context, message: 'Copied Successfully!');
             },
@@ -109,7 +111,7 @@ class _ShowQrCodeState extends State<ShowQrCode> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    widget.session.code ?? '',
+                    widget.session?.code ?? '',
                     style: AppTextStyles.s38W600.copyWith(
                       color: AppColors.text,
                       letterSpacing: 7.5,
@@ -158,24 +160,25 @@ class _ShowQrCodeState extends State<ShowQrCode> {
 
           const SizedBox(height: 32),
 
-          TextButton(
-            onPressed: () {},
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.refresh, color: AppColors.primary, size: 28),
+          if (widget.session?.status != PairingStatus.active)
+            TextButton(
+              onPressed: () {},
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.refresh, color: AppColors.primary, size: 28),
 
-                const SizedBox(width: 8),
+                  const SizedBox(width: 8),
 
-                Text(
-                  'Refresh Code',
-                  style: AppTextStyles.s18W600.copyWith(
-                    color: AppColors.primary,
+                  Text(
+                    'Refresh Code',
+                    style: AppTextStyles.s18W600.copyWith(
+                      color: AppColors.primary,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );

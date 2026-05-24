@@ -18,6 +18,12 @@ _PairingSession _$PairingSessionFromJson(Map<String, dynamic> json) =>
         json['status'],
         const PairingStatusConverter().fromJson,
       ),
+      pairedWith: json['pairedWith'] == null
+          ? null
+          : Device.fromJson(json['pairedWith'] as Map<String, dynamic>),
+      receivers: (json['receivers'] as List<dynamic>?)
+          ?.map((e) => Device.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$PairingSessionToJson(_PairingSession instance) =>
@@ -30,6 +36,8 @@ Map<String, dynamic> _$PairingSessionToJson(_PairingSession instance) =>
         instance.status,
         const PairingStatusConverter().toJson,
       ),
+      'pairedWith': instance.pairedWith,
+      'receivers': instance.receivers,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

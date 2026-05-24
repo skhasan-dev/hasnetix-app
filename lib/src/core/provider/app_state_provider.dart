@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hasnetix/src/core/index.dart'
-    show ViewStateProvider, getIt, APIFailure, Failure;
+    show ViewStateProvider, getIt, APIFailure, Failure, RouteNames, SecretRepo;
 import 'package:hasnetix/src/features/auth/index.dart' show User;
 import 'package:hasnetix/src/features/home/index.dart';
 import 'package:hasnetix/src/features/profile/index.dart';
@@ -24,5 +26,11 @@ class AppStateProvider extends ViewStateProvider {
       },
     );
     return null;
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await SecretRepo.remove('auth_token');
+    await SecretRepo.remove('auth_user_id');
+    context.goNamed(RouteNames.login);
   }
 }

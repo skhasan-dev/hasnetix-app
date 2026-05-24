@@ -5,7 +5,9 @@ import 'package:hasnetix/src/common/index.dart'
 import 'package:hasnetix/src/core/index.dart' show Toasts;
 
 class CodeEnter extends StatefulWidget {
-  const CodeEnter({super.key});
+  const CodeEnter({required this.onCodeSubmitted, super.key});
+
+  final ValueChanged<String> onCodeSubmitted;
 
   @override
   State<CodeEnter> createState() => _CodeEnterState();
@@ -151,7 +153,6 @@ class _CodeEnterState extends State<CodeEnter> {
       return;
     }
 
-    /// Success
-    Toasts.showSuccessToast(context, message: 'Entered Code: $code');
+    widget.onCodeSubmitted.call(code);
   }
 }

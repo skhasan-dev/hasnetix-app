@@ -38,6 +38,11 @@ GoRouter appRouter = GoRouter(
                   final appStateProvider = getIt<AppStateProvider>();
                   await appStateProvider.getUserDetails();
                   // await appStateProvider.init();
+                  if (appStateProvider.user == null) {
+                    await SecretRepo.clearAll();
+                    context.goNamed(RouteNames.login);
+                    return;
+                  }
                   context.goNamed(RouteNames.home);
                 }
                 return;

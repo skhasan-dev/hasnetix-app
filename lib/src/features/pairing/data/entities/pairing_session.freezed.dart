@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PairingSession {
 
- String? get userId;@JsonKey(name: 'pairingId') String? get id; DateTime? get expiresAt; String? get code;@PairingStatusConverter() PairingStatus? get status;
+ String? get userId;@JsonKey(name: 'pairingId') String? get id; DateTime? get expiresAt; String? get code;@PairingStatusConverter() PairingStatus? get status; Device? get pairedWith; List<Device>? get receivers;
 /// Create a copy of PairingSession
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PairingSessionCopyWith<PairingSession> get copyWith => _$PairingSessionCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PairingSession&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.id, id) || other.id == id)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.code, code) || other.code == code)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PairingSession&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.id, id) || other.id == id)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.code, code) || other.code == code)&&(identical(other.status, status) || other.status == status)&&(identical(other.pairedWith, pairedWith) || other.pairedWith == pairedWith)&&const DeepCollectionEquality().equals(other.receivers, receivers));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userId,id,expiresAt,code,status);
+int get hashCode => Object.hash(runtimeType,userId,id,expiresAt,code,status,pairedWith,const DeepCollectionEquality().hash(receivers));
 
 @override
 String toString() {
-  return 'PairingSession(userId: $userId, id: $id, expiresAt: $expiresAt, code: $code, status: $status)';
+  return 'PairingSession(userId: $userId, id: $id, expiresAt: $expiresAt, code: $code, status: $status, pairedWith: $pairedWith, receivers: $receivers)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $PairingSessionCopyWith<$Res>  {
   factory $PairingSessionCopyWith(PairingSession value, $Res Function(PairingSession) _then) = _$PairingSessionCopyWithImpl;
 @useResult
 $Res call({
- String? userId,@JsonKey(name: 'pairingId') String? id, DateTime? expiresAt, String? code,@PairingStatusConverter() PairingStatus? status
+ String? userId,@JsonKey(name: 'pairingId') String? id, DateTime? expiresAt, String? code,@PairingStatusConverter() PairingStatus? status, Device? pairedWith, List<Device>? receivers
 });
 
 
-
+$DeviceCopyWith<$Res>? get pairedWith;
 
 }
 /// @nodoc
@@ -65,17 +65,31 @@ class _$PairingSessionCopyWithImpl<$Res>
 
 /// Create a copy of PairingSession
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? userId = freezed,Object? id = freezed,Object? expiresAt = freezed,Object? code = freezed,Object? status = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? userId = freezed,Object? id = freezed,Object? expiresAt = freezed,Object? code = freezed,Object? status = freezed,Object? pairedWith = freezed,Object? receivers = freezed,}) {
   return _then(_self.copyWith(
 userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,expiresAt: freezed == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as PairingStatus?,
+as PairingStatus?,pairedWith: freezed == pairedWith ? _self.pairedWith : pairedWith // ignore: cast_nullable_to_non_nullable
+as Device?,receivers: freezed == receivers ? _self.receivers : receivers // ignore: cast_nullable_to_non_nullable
+as List<Device>?,
   ));
 }
+/// Create a copy of PairingSession
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DeviceCopyWith<$Res>? get pairedWith {
+    if (_self.pairedWith == null) {
+    return null;
+  }
 
+  return $DeviceCopyWith<$Res>(_self.pairedWith!, (value) {
+    return _then(_self.copyWith(pairedWith: value));
+  });
+}
 }
 
 
@@ -157,10 +171,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? userId, @JsonKey(name: 'pairingId')  String? id,  DateTime? expiresAt,  String? code, @PairingStatusConverter()  PairingStatus? status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? userId, @JsonKey(name: 'pairingId')  String? id,  DateTime? expiresAt,  String? code, @PairingStatusConverter()  PairingStatus? status,  Device? pairedWith,  List<Device>? receivers)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PairingSession() when $default != null:
-return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status);case _:
+return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status,_that.pairedWith,_that.receivers);case _:
   return orElse();
 
 }
@@ -178,10 +192,10 @@ return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? userId, @JsonKey(name: 'pairingId')  String? id,  DateTime? expiresAt,  String? code, @PairingStatusConverter()  PairingStatus? status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? userId, @JsonKey(name: 'pairingId')  String? id,  DateTime? expiresAt,  String? code, @PairingStatusConverter()  PairingStatus? status,  Device? pairedWith,  List<Device>? receivers)  $default,) {final _that = this;
 switch (_that) {
 case _PairingSession():
-return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status);case _:
+return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status,_that.pairedWith,_that.receivers);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +212,10 @@ return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? userId, @JsonKey(name: 'pairingId')  String? id,  DateTime? expiresAt,  String? code, @PairingStatusConverter()  PairingStatus? status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? userId, @JsonKey(name: 'pairingId')  String? id,  DateTime? expiresAt,  String? code, @PairingStatusConverter()  PairingStatus? status,  Device? pairedWith,  List<Device>? receivers)?  $default,) {final _that = this;
 switch (_that) {
 case _PairingSession() when $default != null:
-return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status);case _:
+return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status,_that.pairedWith,_that.receivers);case _:
   return null;
 
 }
@@ -213,7 +227,7 @@ return $default(_that.userId,_that.id,_that.expiresAt,_that.code,_that.status);c
 @JsonSerializable()
 
 class _PairingSession implements PairingSession {
-  const _PairingSession({this.userId, @JsonKey(name: 'pairingId') this.id, this.expiresAt, this.code, @PairingStatusConverter() this.status});
+  const _PairingSession({this.userId, @JsonKey(name: 'pairingId') this.id, this.expiresAt, this.code, @PairingStatusConverter() this.status, this.pairedWith, final  List<Device>? receivers}): _receivers = receivers;
   factory _PairingSession.fromJson(Map<String, dynamic> json) => _$PairingSessionFromJson(json);
 
 @override final  String? userId;
@@ -221,6 +235,16 @@ class _PairingSession implements PairingSession {
 @override final  DateTime? expiresAt;
 @override final  String? code;
 @override@PairingStatusConverter() final  PairingStatus? status;
+@override final  Device? pairedWith;
+ final  List<Device>? _receivers;
+@override List<Device>? get receivers {
+  final value = _receivers;
+  if (value == null) return null;
+  if (_receivers is EqualUnmodifiableListView) return _receivers;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of PairingSession
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +259,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PairingSession&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.id, id) || other.id == id)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.code, code) || other.code == code)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PairingSession&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.id, id) || other.id == id)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt)&&(identical(other.code, code) || other.code == code)&&(identical(other.status, status) || other.status == status)&&(identical(other.pairedWith, pairedWith) || other.pairedWith == pairedWith)&&const DeepCollectionEquality().equals(other._receivers, _receivers));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userId,id,expiresAt,code,status);
+int get hashCode => Object.hash(runtimeType,userId,id,expiresAt,code,status,pairedWith,const DeepCollectionEquality().hash(_receivers));
 
 @override
 String toString() {
-  return 'PairingSession(userId: $userId, id: $id, expiresAt: $expiresAt, code: $code, status: $status)';
+  return 'PairingSession(userId: $userId, id: $id, expiresAt: $expiresAt, code: $code, status: $status, pairedWith: $pairedWith, receivers: $receivers)';
 }
 
 
@@ -255,11 +279,11 @@ abstract mixin class _$PairingSessionCopyWith<$Res> implements $PairingSessionCo
   factory _$PairingSessionCopyWith(_PairingSession value, $Res Function(_PairingSession) _then) = __$PairingSessionCopyWithImpl;
 @override @useResult
 $Res call({
- String? userId,@JsonKey(name: 'pairingId') String? id, DateTime? expiresAt, String? code,@PairingStatusConverter() PairingStatus? status
+ String? userId,@JsonKey(name: 'pairingId') String? id, DateTime? expiresAt, String? code,@PairingStatusConverter() PairingStatus? status, Device? pairedWith, List<Device>? receivers
 });
 
 
-
+@override $DeviceCopyWith<$Res>? get pairedWith;
 
 }
 /// @nodoc
@@ -272,18 +296,32 @@ class __$PairingSessionCopyWithImpl<$Res>
 
 /// Create a copy of PairingSession
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? userId = freezed,Object? id = freezed,Object? expiresAt = freezed,Object? code = freezed,Object? status = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? userId = freezed,Object? id = freezed,Object? expiresAt = freezed,Object? code = freezed,Object? status = freezed,Object? pairedWith = freezed,Object? receivers = freezed,}) {
   return _then(_PairingSession(
 userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String?,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,expiresAt: freezed == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as PairingStatus?,
+as PairingStatus?,pairedWith: freezed == pairedWith ? _self.pairedWith : pairedWith // ignore: cast_nullable_to_non_nullable
+as Device?,receivers: freezed == receivers ? _self._receivers : receivers // ignore: cast_nullable_to_non_nullable
+as List<Device>?,
   ));
 }
 
+/// Create a copy of PairingSession
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DeviceCopyWith<$Res>? get pairedWith {
+    if (_self.pairedWith == null) {
+    return null;
+  }
 
+  return $DeviceCopyWith<$Res>(_self.pairedWith!, (value) {
+    return _then(_self.copyWith(pairedWith: value));
+  });
+}
 }
 
 // dart format on

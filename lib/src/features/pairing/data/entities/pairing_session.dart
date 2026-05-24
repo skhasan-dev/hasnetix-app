@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hasnetix/src/core/index.dart';
+import 'package:hasnetix/src/features/auth/data/index.dart';
 
 part 'pairing_session.freezed.dart';
 part 'pairing_session.g.dart';
@@ -12,6 +13,8 @@ abstract class PairingSession with _$PairingSession {
     DateTime? expiresAt,
     String? code,
     @PairingStatusConverter() PairingStatus? status,
+    Device? pairedWith,
+    List<Device>? receivers,
   }) = _PairingSession;
 
   factory PairingSession.fromJson(Map<String, dynamic> json) =>

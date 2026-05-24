@@ -50,7 +50,11 @@ class ConnectedDevices extends StatelessWidget {
                   label: 'Pair a device',
                   onPressed: () async {
                     final result = await context.pushNamed(RouteNames.pairing);
-                    if (result == true) {}
+                    if (result == true) {
+                      final failure = await getIt<AppStateProvider>()
+                          .getUserDetails();
+                      failure?.showError(context);
+                    }
                   },
                 ),
               ],

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String? get userId;@UserTypeConverter() UserType? get type; String? get name; String? get email; int? get monthlyUsage; UserStorage? get storage; DateTime? get usageResetAt;@DeviceOrStringConvertor() Device? get device;@DeviceListOrStringListConvertor() List<Device>? get lastPairedDevices;
+@JsonKey(name: '_id') String? get id; String? get userId;@UserTypeConverter() UserType? get type; String? get name; String? get email; int? get monthlyUsage; UserStorage? get storage; DateTime? get usageResetAt;@DeviceOrStringConvertor() Device? get device;@DeviceListOrStringListConvertor() List<Device>? get lastPairedDevices;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.monthlyUsage, monthlyUsage) || other.monthlyUsage == monthlyUsage)&&(identical(other.storage, storage) || other.storage == storage)&&(identical(other.usageResetAt, usageResetAt) || other.usageResetAt == usageResetAt)&&(identical(other.device, device) || other.device == device)&&const DeepCollectionEquality().equals(other.lastPairedDevices, lastPairedDevices));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.monthlyUsage, monthlyUsage) || other.monthlyUsage == monthlyUsage)&&(identical(other.storage, storage) || other.storage == storage)&&(identical(other.usageResetAt, usageResetAt) || other.usageResetAt == usageResetAt)&&(identical(other.device, device) || other.device == device)&&const DeepCollectionEquality().equals(other.lastPairedDevices, lastPairedDevices));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userId,type,name,email,monthlyUsage,storage,usageResetAt,device,const DeepCollectionEquality().hash(lastPairedDevices));
+int get hashCode => Object.hash(runtimeType,id,userId,type,name,email,monthlyUsage,storage,usageResetAt,device,const DeepCollectionEquality().hash(lastPairedDevices));
 
 @override
 String toString() {
-  return 'User(userId: $userId, type: $type, name: $name, email: $email, monthlyUsage: $monthlyUsage, storage: $storage, usageResetAt: $usageResetAt, device: $device, lastPairedDevices: $lastPairedDevices)';
+  return 'User(id: $id, userId: $userId, type: $type, name: $name, email: $email, monthlyUsage: $monthlyUsage, storage: $storage, usageResetAt: $usageResetAt, device: $device, lastPairedDevices: $lastPairedDevices)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt,@DeviceOrStringConvertor() Device? device,@DeviceListOrStringListConvertor() List<Device>? lastPairedDevices
+@JsonKey(name: '_id') String? id, String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt,@DeviceOrStringConvertor() Device? device,@DeviceListOrStringListConvertor() List<Device>? lastPairedDevices
 });
 
 
@@ -65,9 +65,10 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? userId = freezed,Object? type = freezed,Object? name = freezed,Object? email = freezed,Object? monthlyUsage = freezed,Object? storage = freezed,Object? usageResetAt = freezed,Object? device = freezed,Object? lastPairedDevices = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? userId = freezed,Object? type = freezed,Object? name = freezed,Object? email = freezed,Object? monthlyUsage = freezed,Object? storage = freezed,Object? usageResetAt = freezed,Object? device = freezed,Object? lastPairedDevices = freezed,}) {
   return _then(_self.copyWith(
-userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as UserType?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -185,10 +186,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: '_id')  String? id,  String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
+return $default(_that.id,_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
   return orElse();
 
 }
@@ -206,10 +207,10 @@ return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsag
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: '_id')  String? id,  String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)  $default,) {final _that = this;
 switch (_that) {
 case _User():
-return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
+return $default(_that.id,_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -226,10 +227,10 @@ return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsag
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: '_id')  String? id,  String? userId, @UserTypeConverter()  UserType? type,  String? name,  String? email,  int? monthlyUsage,  UserStorage? storage,  DateTime? usageResetAt, @DeviceOrStringConvertor()  Device? device, @DeviceListOrStringListConvertor()  List<Device>? lastPairedDevices)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
+return $default(_that.id,_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsage,_that.storage,_that.usageResetAt,_that.device,_that.lastPairedDevices);case _:
   return null;
 
 }
@@ -241,9 +242,10 @@ return $default(_that.userId,_that.type,_that.name,_that.email,_that.monthlyUsag
 @JsonSerializable()
 
 class _User implements User {
-  const _User({this.userId, @UserTypeConverter() this.type, this.name, this.email, this.monthlyUsage, this.storage, this.usageResetAt, @DeviceOrStringConvertor() this.device, @DeviceListOrStringListConvertor() final  List<Device>? lastPairedDevices}): _lastPairedDevices = lastPairedDevices;
+  const _User({@JsonKey(name: '_id') this.id, this.userId, @UserTypeConverter() this.type, this.name, this.email, this.monthlyUsage, this.storage, this.usageResetAt, @DeviceOrStringConvertor() this.device, @DeviceListOrStringListConvertor() final  List<Device>? lastPairedDevices}): _lastPairedDevices = lastPairedDevices;
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
+@override@JsonKey(name: '_id') final  String? id;
 @override final  String? userId;
 @override@UserTypeConverter() final  UserType? type;
 @override final  String? name;
@@ -275,16 +277,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.monthlyUsage, monthlyUsage) || other.monthlyUsage == monthlyUsage)&&(identical(other.storage, storage) || other.storage == storage)&&(identical(other.usageResetAt, usageResetAt) || other.usageResetAt == usageResetAt)&&(identical(other.device, device) || other.device == device)&&const DeepCollectionEquality().equals(other._lastPairedDevices, _lastPairedDevices));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.monthlyUsage, monthlyUsage) || other.monthlyUsage == monthlyUsage)&&(identical(other.storage, storage) || other.storage == storage)&&(identical(other.usageResetAt, usageResetAt) || other.usageResetAt == usageResetAt)&&(identical(other.device, device) || other.device == device)&&const DeepCollectionEquality().equals(other._lastPairedDevices, _lastPairedDevices));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userId,type,name,email,monthlyUsage,storage,usageResetAt,device,const DeepCollectionEquality().hash(_lastPairedDevices));
+int get hashCode => Object.hash(runtimeType,id,userId,type,name,email,monthlyUsage,storage,usageResetAt,device,const DeepCollectionEquality().hash(_lastPairedDevices));
 
 @override
 String toString() {
-  return 'User(userId: $userId, type: $type, name: $name, email: $email, monthlyUsage: $monthlyUsage, storage: $storage, usageResetAt: $usageResetAt, device: $device, lastPairedDevices: $lastPairedDevices)';
+  return 'User(id: $id, userId: $userId, type: $type, name: $name, email: $email, monthlyUsage: $monthlyUsage, storage: $storage, usageResetAt: $usageResetAt, device: $device, lastPairedDevices: $lastPairedDevices)';
 }
 
 
@@ -295,7 +297,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt,@DeviceOrStringConvertor() Device? device,@DeviceListOrStringListConvertor() List<Device>? lastPairedDevices
+@JsonKey(name: '_id') String? id, String? userId,@UserTypeConverter() UserType? type, String? name, String? email, int? monthlyUsage, UserStorage? storage, DateTime? usageResetAt,@DeviceOrStringConvertor() Device? device,@DeviceListOrStringListConvertor() List<Device>? lastPairedDevices
 });
 
 
@@ -312,9 +314,10 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? userId = freezed,Object? type = freezed,Object? name = freezed,Object? email = freezed,Object? monthlyUsage = freezed,Object? storage = freezed,Object? usageResetAt = freezed,Object? device = freezed,Object? lastPairedDevices = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? userId = freezed,Object? type = freezed,Object? name = freezed,Object? email = freezed,Object? monthlyUsage = freezed,Object? storage = freezed,Object? usageResetAt = freezed,Object? device = freezed,Object? lastPairedDevices = freezed,}) {
   return _then(_User(
-userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as UserType?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
